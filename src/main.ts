@@ -125,7 +125,7 @@ while (controle){
                 
             break;
         case 3: // ------------ consultar no acervo ---------
-            while (again){   // aqui ta dando treta na segunda entrada do loop em diante
+            while (again){   // aqui ta dando treta na segunda entrada do loop em diante | Fé
                 const keyword = prompt ("Entre com uma palavra-chave para pesquisa: ")
                 let encontrada = false
                 for (let livro of Livros.listaLivros){
