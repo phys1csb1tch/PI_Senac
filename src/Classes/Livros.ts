@@ -31,7 +31,7 @@ export class Livros {
         this.genero=genero;
 
         const livroExistente = Livros.listaLivros.find(
-            (genero) => genero.nome === nome );
+            (livro) => livro.nome === nome );
     
         if (livroExistente) {
             console.error("Livro já cadastrado.");
