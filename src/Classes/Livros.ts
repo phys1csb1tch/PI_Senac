@@ -1,7 +1,7 @@
 import { Genero } from './Genero';
 
 export class Livros {
-    protected static contadorId: number = 0;
+    protected static contadorId: number = 1; //contador auto incrementado
     protected idLivro: number;
     protected nome: string;
     protected autor: string;
@@ -11,7 +11,7 @@ export class Livros {
     protected numeroPaginas: number;
     protected disponivel: boolean = true; // aqui torna o livro disponivel no momento da criação
     protected genero: Genero[];
-    static listaLivros: Livros[]=[]
+    static listaLivros: Livros[]=[] // array de armazenamento
 
     constructor(nome: string,
     autor: string,
@@ -45,19 +45,18 @@ export class Livros {
         Livros.listaLivros.forEach((livro) => console.log(livro.exibir()));
     }
 
-    exibir(){
-        console.log(
-            `ID: ${this.idLivro}
+    exibir(): string{
+
+       return `ID: ${this.idLivro}
             Título: ${this.nome}
             Autor: ${this.autor}
-            Data de Publicação: ${this.dataPublicacao}
+            Data de Publicação: ${this.dataPublicacao.toLocaleDateString()}
             Editora: ${this.editora}
             Edição: ${this.edicao}
             Número de Páginas: ${this.numeroPaginas}
             Disponível para locação? ${this.disponivel ? 'Sim' : 'Não'}
-            Gênero: ${Genero.listarGeneros()} 
+            Gênero: ${Genero.exibirSoNomes(this.genero)} 
             `
-        ) // ta dando problema na listagem de generos!
     }
 
 
@@ -70,4 +69,9 @@ export class Livros {
         console.log(`O livro agora está ${this.disponivel? "disponível." : "indisponível."}`)
     }
 
+    adicionaGenero(){ // metodo incompleto
+        Genero.listarGeneros
+        const novoGenero = prompt ("Escolha um Gênero: ")
+
+    }
 }

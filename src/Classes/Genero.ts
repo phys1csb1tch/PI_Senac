@@ -1,5 +1,5 @@
 export class Genero {
-    protected static contadorId: number = 0;
+    protected static contadorId: number = 1;
     protected idGenero: number;
     protected nomeGenero: string;
     static listaGeneros: Genero[]=[]
@@ -19,13 +19,15 @@ export class Genero {
         }
     }
 
-    exibir(){
-        console.log(
-            `ID: ${this.idGenero}
-            Nome: ${this.nomeGenero}`)
+    exibir(): string{
+        return `ID: ${this.idGenero} | Nome: ${this.nomeGenero}`
     }
 
     static listarGeneros() {
-        Genero.listaGeneros.forEach((genero) => console.log(genero.exibir()));
+        Genero.listaGeneros.forEach((genero) => genero.exibir());
+    }
+
+    static exibirSoNomes(generos: Genero[]): string {
+        return generos.map((genero) => genero.nomeGenero).join(', ')
     }
 }

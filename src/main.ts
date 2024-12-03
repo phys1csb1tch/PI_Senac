@@ -41,6 +41,9 @@ const livro12 = new Livros("A Cabana", "William P. Young", new Date(2007, 2, 1),
 
 
 /*
+
+
+IDEIA: SEPARAR OS MENUS VISITANTE, USUARIO E ADMIN EM ARQUIVOS DIFERENTES
 1. Login
     SE LOGIN É USUARIO >
     ----------Menu---------
@@ -72,9 +75,10 @@ const livro12 = new Livros("A Cabana", "William P. Young", new Date(2007, 2, 1),
     Alterar data de devolução
 
     
-2. Consultar Acervo
-3. Cadastrar novo Usuário
-4. Sair
+2. Listar Acervo
+3. Consultar no Acervo
+4. Cadastrar novo Usuário
+5. Sair
  */
 
 // ----------------------- MENU --------------------------
@@ -88,11 +92,10 @@ while (controle){
     console.log("4. Novo cadastro")
     console.log("5. Sair")
     let opcao = Number(prompt("Escolha uma opção: "))
-
+    let again= "1"
 
     switch (opcao){
         case 1: // -------------------- LOGIN ----------------------   
-            let again= "1";
             while(again){
                 const user = prompt (`Entre com o nome de Usuário: `);
                 const usuarioEncontrado = Usuario.consultarUsuario(user)
@@ -118,10 +121,31 @@ while (controle){
         case 2: // ----------- listar acervo ----------------
             console.log("Listando acervo: ")
 
-            Livros.listarLivros(); // aqui ta dando problema 
+            Livros.listarLivros();
                 
             break;
         case 3: // ------------ consultar no acervo ---------
+            while (again){   // aqui ta dando treta na segunda entrada do loop em diante
+                const keyword = prompt ("Entre com uma palavra-chave para pesquisa: ")
+                let encontrada = false
+                for (let livro of Livros.listaLivros){
+                    const valoresLivro = Object.values(livro).map((v) => v.toString());
+                    if (valoresLivro.some((valor) => valor.includes(keyword))){
+                        console.log (`Correspondência encontrada!`)
+                        console.log(livro.exibir())
+                        encontrada = true;
+                    }
+                }
+                
+                if (!encontrada){
+                    console.log("Correspondência não encontrada.")
+                }
+                {
+                    again = prompt (`Deseja buscar novamente? 1: Sim | 2: Não`)
+                        if (again ==="2"){break}
+                }
+                break;
+            }
             break;
         case 4: // --------------- Cadastre-se ---------------
             const novoNome = prompt ("Nome: ")
@@ -133,7 +157,8 @@ while (controle){
 
             break;
         case 5: 
-            console.log("Saindo. Até mais!") // aqui nao ta saindo do loop quando manda
+            console.log("Saindo. Até mais!")
+            controle = false;
             break;
 
     }
