@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Admin_1 = require("./Classes/Admin");
+const Usuario_1 = require("./Classes/Usuario");
+var usuario1 = new Usuario_1.Usuario("Jade", "028", "ali", "123");
+usuario1.exibir();
+usuario1.trocaSenha();
+var admin1 = new Admin_1.Admin("admin", "admin");
+admin1.exibir();
+// admin1.trocaSenha(Admin[admin1]);
