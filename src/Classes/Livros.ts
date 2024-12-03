@@ -70,6 +70,7 @@ export class Livros {
     }
 
     adicionaGenero(){ // metodo incompleto
+        /*fluxo: selecionar livro  */
         Genero.listarGeneros
         const novoGenero = prompt ("Escolha um Gênero: ")
 
