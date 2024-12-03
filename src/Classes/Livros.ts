@@ -9,8 +9,9 @@ export class Livros {
     protected editora: string;
     protected edicao: string;
     protected numeroPaginas: number;
-    protected disponivel: boolean;
+    protected disponivel: boolean = true; // aqui torna o livro disponivel no momento da criação
     protected genero: Genero[];
+    static listaLivros: Livros[]=[]
 
     constructor(nome: string,
     autor: string,
@@ -18,7 +19,6 @@ export class Livros {
     editora: string,
     edicao: string,
     numeroPaginas: number,
-    disponivel: boolean,
     genero: Genero[]
     ){
         this.idLivro=Livros.contadorId++;
@@ -27,9 +27,22 @@ export class Livros {
         this.dataPublicacao=dataPublicacao;
         this.editora=editora;
         this.edicao=edicao;
-        this.numeroPaginas=numeroPaginas;
-        this.disponivel=disponivel;
+        this.numeroPaginas=numeroPaginas;;
         this.genero=genero;
+
+        const livroExistente = Livros.listaLivros.find(
+            (genero) => genero.nome === nome );
+    
+        if (livroExistente) {
+            console.error("Livro já cadastrado.");
+        } else {
+            Livros.listaLivros.push(this);
+            console.log("Livro cadastrado com sucesso!");
+        }
+    }
+
+    static listarLivros() {
+        Livros.listaLivros.forEach((livro) => console.log(livro.exibir()));
     }
 
     exibir(){
@@ -42,9 +55,11 @@ export class Livros {
             Edição: ${this.edicao}
             Número de Páginas: ${this.numeroPaginas}
             Disponível para locação? ${this.disponivel ? 'Sim' : 'Não'}
+            Gênero: ${Genero.listarGeneros()} 
             `
-        )
+        ) // ta dando problema na listagem de generos!
     }
+
 
     verificaDisponibilidade(){
         this.disponivel ? 'O livro está disponível para locação.' : 'Este livro está locado.'

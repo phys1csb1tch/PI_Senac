@@ -1,5 +1,4 @@
 import promptSync from 'prompt-sync';
-import { Admin } from './Admin';
 const prompt = promptSync();
 
 export class Usuario {

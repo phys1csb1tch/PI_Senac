@@ -1,7 +1,6 @@
 import promptSync from 'prompt-sync';
 import { Usuario } from './Usuario';
 const prompt = promptSync();
-// Estão sendo criados dois vetores, Admin[] e Usuarios[], tem que ver pra encaixar no mesmo vetor pq não sei se não vai dar problema isso depois ; os dois carregam a mesma propriedade estática chamada listaUsuarios, pelos testes parecia que tava funcionando certo, mas agora nao sei direito qual é
 
 export class Admin extends Usuario{
 
