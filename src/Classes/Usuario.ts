@@ -2,19 +2,26 @@ import promptSync from 'prompt-sync';
 import { Admin } from './Admin';
 const prompt = promptSync();
 
-export class Usuario extends Admin{
+export class Usuario {
     static listaUsuarios: Usuario[]=[];
     protected _cpf: string;
     protected endereco: string;
+    protected static contadorID: number=1;
+    protected id: number;
+    protected _nome:string;
+    protected _senha: string;
+    protected verificaAdmin: boolean;
 
     constructor (nome: string, cpf: string, endereco: string, senha: string){
-        super (nome, senha)
+        this.id=Usuario.contadorID++
+        this._nome=nome;
+        this._senha=senha;
         this.verificaAdmin=false;
         this._cpf=cpf;
         this.endereco=endereco;
 
         const usuarioExistente = Usuario.listaUsuarios.find(
-            (usuario) => usuario.nome === nome || usuario._cpf === cpf
+            (usuario) => usuario._nome === nome || usuario._cpf === cpf
         );
     
         if (usuarioExistente) {
@@ -26,23 +33,52 @@ export class Usuario extends Admin{
     }
 
     exibir (){
-        return super.exibir() + ` | CPF: ${this.cpf} | Endereço: ${this.endereco}`
+        return `Id: ${this.id}| Nome: ${this._nome} | CPF: ${this._cpf} | Endereço: ${this.endereco}`
     }
 
-    get cpf (){
+    get cpf (): string{
         return this._cpf
+    }
+
+    get senha (): string{
+        return this._senha
+    }
+
+    set senha (novasenha: string){
+        this._senha=novasenha
+    }
+
+    get nome (): string {
+        return this._nome
+    }
+
+    set nome (novoNome: string){
+        this._nome=novoNome
     }
 
     trocaSenha(){//aqui posso expandir colocando uma verificação pra indicar erro no usuario ou na senha
         const usuario= prompt (`Entre com o nome de usuário: `)
         const senha= prompt (`Senha: `)
 
-        if (usuario==this.nome && senha==this._senha) {
+        if (usuario==this._nome && senha==this._senha) {
             this._senha = prompt ("Nova senha: ")
             console.log ("Senha atualizada!")
         } else {
             console.log ("Usuário não encontrado ou senha incorreta.") 
         }
+    }
+
+
+    static listarUsuarios() {
+        Usuario.listaUsuarios.forEach((usuario) => console.log(usuario.exibir()));
+    }
+
+    static consultarUsuario(criterio: string): Usuario | null {
+        return (
+            Usuario.listaUsuarios.find(
+                (usuario) => usuario._nome === criterio || usuario.id.toString() === criterio
+            ) || null
+        );
     }
 }
 

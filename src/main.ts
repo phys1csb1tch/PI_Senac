@@ -74,7 +74,7 @@ while (controle){
             let again= "1";
             while(again){
                 const user = prompt (`Entre com o nome de Usuário: `);
-                const usuarioEncontrado = Admin.consultarUsuario(user)
+                const usuarioEncontrado = Usuario.consultarUsuario(user)
                 if (usuarioEncontrado){
                     const password = prompt (`Entre com a senha para o Usuário '${usuarioEncontrado.nome}': `)
                     if (password === usuarioEncontrado.senha){
