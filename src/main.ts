@@ -3,7 +3,7 @@ import { Usuario } from "./Classes/Usuario";
 import { Genero } from "./Classes/Genero";
 import { Livros } from "./Classes/Livros";
 import promptSync from 'prompt-sync';
-import { UserScreen } from "./screens/UserScreen";
+// import { UserScreen } from "./screens/UserScreen";
 const prompt = promptSync();
 // let login: boolean = false;
 

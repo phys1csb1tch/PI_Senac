@@ -7,5 +7,12 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "prompt-sync": "^4.2.0",
+    "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "@types/prompt-sync": "^4.2.3"
+  }
 }
