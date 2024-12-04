@@ -17,6 +17,9 @@ class Locacao {
     exibir() {
         console.log(` ID livro: ${this.idLivro} \n ID Usuario: ${this.idUsuario} \n Locado em: ${this.dataLocacao.toLocaleDateString()} \n Entrega Devolução: ${this.dataDevolucao.toLocaleDateString()} \n Status: ${this.isLate() ? "Atrasado" : "No Prazo"} \n Devolvido: ${this.devolvido ? "Sim" : "Não"}`);
     }
+    devolver() {
+        this.devolvido = true;
+    }
     /**
      * Verifica se o livro está atrasado
      * @returns {Boolean} True == Atrasado | False == No prazo
@@ -34,6 +37,23 @@ class Locacao {
         Locacao.listaLocacao.forEach((el) => {
             console.log(el.exibir());
         });
+    }
+    /**
+     * Busca as locações por usuário
+     * @param criterio - Pode ser o ID ou o Nome do usuário
+     */
+    static buscarLocacaoPorUsuario(criterio) {
+        let locacoes = Locacao.listaLocacao.filter(el => el.idUsuario == criterio.toString()); // FEATURE: Exibir o nome do usuario, implementar método na classe Usuarios para mostrar infos buscando por id
+        if (locacoes) {
+            console.log(`O usuário possui ${locacoes.length} locações no seu histórico`); // FEATURE: Exibir o nome do livro, implementar método na classe Livros para mostrar infos buscando por id
+            locacoes.forEach(el => {
+                console.log(`ID do livro: ${el.idLivro}`);
+            });
+        }
+        else {
+            console.log(`O usuário não possuí locações`);
+        }
+        // console.log(Locacao.listaLocacao.filter(el => el.idUsuario == criterio))
     }
 }
 exports.Locacao = Locacao;

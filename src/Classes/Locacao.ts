@@ -35,6 +35,10 @@ export class Locacao {
       } \n Devolvido: ${this.devolvido ? "Sim" : "Não"}`
     );
   }
+
+  devolver(){
+    this.devolvido = true;
+  }
   /**
    * Verifica se o livro está atrasado
    * @returns {Boolean} True == Atrasado | False == No prazo
@@ -54,5 +58,22 @@ export class Locacao {
     Locacao.listaLocacao.forEach((el: Locacao) => {
       console.log(el.exibir());
     });
+  }
+
+  /**
+   * Busca as locações por usuário
+   * @param criterio - Pode ser o ID ou o Nome do usuário
+   */
+  static buscarLocacaoPorUsuario(criterio : string | number){
+      let locacoes = Locacao.listaLocacao.filter(el => el.idUsuario == criterio.toString()); // FEATURE: Exibir o nome do usuario, implementar método na classe Usuarios para mostrar infos buscando por id
+      if(locacoes){
+        console.log(`O usuário possui ${locacoes.length} locações no seu histórico`) // FEATURE: Exibir o nome do livro, implementar método na classe Livros para mostrar infos buscando por id
+        locacoes.forEach(el => {
+          console.log(`ID do livro: ${el.idLivro}`)
+        })
+      }else{
+        console.log(`O usuário não possuí locações`)
+      }
+      // console.log(Locacao.listaLocacao.filter(el => el.idUsuario == criterio))
   }
 }
