@@ -120,7 +120,7 @@ while (controle) {
                     if (password === usuarioEncontrado.senha) {
                         console.log(`Bem vinde, ${usuarioEncontrado.nome}`)
                         // login = true;
-                        UserScreen();
+                        // UserScreen();
                         prompt("Aperte qualquer tecla para continuar...")
                         logado = true;
                         break;

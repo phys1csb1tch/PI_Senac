@@ -36,8 +36,13 @@ export class Locacao {
     );
   }
 
-  devolver(){
+  devolver() {
     this.devolvido = true;
+    if (this.devolvido) {
+      return true;
+    }else{
+      return false;
+    }
   }
   /**
    * Verifica se o livro está atrasado
@@ -64,16 +69,20 @@ export class Locacao {
    * Busca as locações por usuário
    * @param criterio - Pode ser o ID ou o Nome do usuário
    */
-  static buscarLocacaoPorUsuario(criterio : string | number){
-      let locacoes = Locacao.listaLocacao.filter(el => el.idUsuario == criterio.toString()); // FEATURE: Exibir o nome do usuario, implementar método na classe Usuarios para mostrar infos buscando por id
-      if(locacoes){
-        console.log(`O usuário possui ${locacoes.length} locações no seu histórico`) // FEATURE: Exibir o nome do livro, implementar método na classe Livros para mostrar infos buscando por id
-        locacoes.forEach(el => {
-          console.log(`ID do livro: ${el.idLivro}`)
-        })
-      }else{
-        console.log(`O usuário não possuí locações`)
-      }
-      // console.log(Locacao.listaLocacao.filter(el => el.idUsuario == criterio))
+  static buscarLocacaoPorUsuario(criterio: string | number) {
+    let locacoes = Locacao.listaLocacao.filter(
+      (el) => el.idUsuario == criterio.toString()
+    ); // FEATURE: Exibir o nome do usuario, implementar método na classe Usuarios para mostrar infos buscando por id
+    if (locacoes) {
+      console.log(
+        `O usuário possui ${locacoes.length} locações no seu histórico`
+      ); // FEATURE: Exibir o nome do livro, implementar método na classe Livros para mostrar infos buscando por id
+      locacoes.forEach((el) => {
+        console.log(`ID do livro: ${el.idLivro}`);
+      });
+    } else {
+      console.log(`O usuário não possuí locações`);
+    }
+    // console.log(Locacao.listaLocacao.filter(el => el.idUsuario == criterio))
   }
 }
