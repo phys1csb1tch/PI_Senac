@@ -61,7 +61,7 @@ export class Usuario {
         this._nome=novoNome
     }
 
-    trocaSenha(){//aqui posso expandir colocando uma verificação pra indicar erro no usuario ou na senha
+    trocaSenha(){//aqui posso expandir colocando uma verificação pra indicar erro no usuario ou na senha // iria ser bem legal -Y
         const usuario= prompt (`Entre com o nome de usuário: `)
         const senha= prompt (`Senha: `)
 
