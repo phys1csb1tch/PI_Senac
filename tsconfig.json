@@ -6,9 +6,9 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "outDir": "./dist",
-    "rootDir": "./"
+    "rootDir": "./src"
   },
-  "include": ["src", "**/*.test.ts"]
+  "include": ["src", "**/*.test.ts", "tests"]
 }
 
 // OLD TSCONFIG.JSON

@@ -27,7 +27,7 @@ export class Locacao {
    * Exibe informações sobre a locação
    */
   exibir() {
-    console.log(
+    return(
       ` ID livro: ${this.idLivro} \n ID Usuario: ${
         this.idUsuario
       } \n Locado em: ${this.dataLocacao.toLocaleDateString()} \n Entrega Devolução: ${this.dataDevolucao.toLocaleDateString()} \n Status: ${

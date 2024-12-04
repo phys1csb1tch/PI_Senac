@@ -21,13 +21,15 @@ import { Locacao } from "./Classes/Locacao";
 
 const locacao1 = new Locacao(1, 1, new Date("09-08-2021"), new Date("09-08-2021"), null)
 const locacao2 = new Locacao(2, 1, new Date("05-02-2021"), new Date("03-08-2021"), null)
+
+console.log(locacao1.exibir())
 // locacao2.devolver()
 // const locacao1 = new Locacao(1, )
 
 // console.log(locacao1.isLate() ? "Atrasado" : "No prazo")
 
 // Locacao.listarLocacoes();
-Locacao.buscarLocacaoPorUsuario(0)
+// Locacao.buscarLocacaoPorUsuario(0)
 // console.log(new Date().toLocaleDateString())
 // locacao1.exibir()
 
