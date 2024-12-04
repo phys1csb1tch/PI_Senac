@@ -14,6 +14,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Locação
 // ========================
 const Locacao_1 = require("./Classes/Locacao");
-const locacao1 = new Locacao_1.Locacao(4, 1, new Date("09-08-2021"), new Date("09-08-2021"));
-console.log(locacao1.isLate() ? "Atrasado" : "No prazo");
-Locacao_1.Locacao.listarLocacoes();
+const locacao1 = new Locacao_1.Locacao(4, 1, new Date("09-08-2021"), new Date("09-08-2021"), null);
+// const locacao1 = new Locacao(1, )
+// console.log(locacao1.isLate() ? "Atrasado" : "No prazo")
+// Locacao.listarLocacoes();
+// console.log(new Date().toLocaleDateString())
+locacao1.exibir();

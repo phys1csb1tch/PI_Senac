@@ -11,19 +11,20 @@ class Locacao {
         this.dataDevolvida = dataDevolvida !== null && dataDevolvida !== void 0 ? dataDevolvida : null;
         Locacao.listaLocacao.push(this);
     }
+    /**
+     * Exibe informações sobre a locação
+     */
     exibir() {
-        console.log(`ID livro: ${this.idLivro} | ID Usuario: ${this.idUsuario} | Locado em: ${this.dataLocacao.toLocaleDateString()} | Entrega Devolução: ${this.dataDevolucao.toLocaleDateString()}`);
+        console.log(` ID livro: ${this.idLivro} \n ID Usuario: ${this.idUsuario} \n Locado em: ${this.dataLocacao.toLocaleDateString()} \n Entrega Devolução: ${this.dataDevolucao.toLocaleDateString()} \n Status: ${this.isLate() ? "Atrasado" : "No Prazo"} \n Devolvido: ${this.devolvido ? "Sim" : "Não"}`);
     }
     /**
      * Verifica se o livro está atrasado
      * @returns {Boolean} True == Atrasado | False == No prazo
      */
     isLate() {
-        // let dataDevolvida = 
-        // return   this.dataDevolucao.getTime() > (this.dataDevolvida.getTime()) &&
-        //   this.devolvido === false
-        //   ? true
-        //   : false;
+        let isLate = new Date().getTime() > this.dataDevolucao.getTime() &&
+            this.devolvido === false;
+        return isLate ? true : false;
     }
     /**
      * Lista os registros de locação
