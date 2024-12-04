@@ -7,6 +7,8 @@ import { UserScreen } from "./screens/UserScreen";
 const prompt = promptSync();
 // let login: boolean = false;
 
+// Teste
+
 // ----------- INSTANCIANDO USUARIOS -------------------
 const user1 = new Usuario("Jade", "038", "ali", "123")
 const admin1 = new Admin("admin", "admin")
