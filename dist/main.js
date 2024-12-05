@@ -8,6 +8,7 @@ const Usuario_1 = require("./Classes/Usuario");
 const Genero_1 = require("./Classes/Genero");
 const Livros_1 = require("./Classes/Livros");
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
+const UserScreen_1 = require("./Screens/UserScreen");
 // import { UserScreen } from "./screens/UserScreen";
 const prompt = (0, prompt_sync_1.default)();
 // let login: boolean = false;
@@ -83,6 +84,7 @@ IDEIA: SEPARAR OS MENUS VISITANTE, USUARIO E ADMIN EM ARQUIVOS DIFERENTES
 // ----------------------- MENU --------------------------
 let controle = true;
 let logado = false;
+var userAuth = null;
 while (controle) {
     console.clear();
     if (logado) {
@@ -110,8 +112,8 @@ while (controle) {
                     const password = prompt(`Entre com a senha para o Usuário '${usuarioEncontrado.nome}': `);
                     if (password === usuarioEncontrado.senha) {
                         console.log(`Bem vinde, ${usuarioEncontrado.nome}`);
-                        // login = true;
-                        // UserScreen();
+                        userAuth = usuarioEncontrado;
+                        (0, UserScreen_1.UserScreen)(userAuth);
                         prompt("Aperte qualquer tecla para continuar...");
                         logado = true;
                         break;

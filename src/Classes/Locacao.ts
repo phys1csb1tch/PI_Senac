@@ -1,3 +1,6 @@
+/**
+ *# Classe para gerenciar locações
+ */
 export class Locacao {
   protected static contadorId: number = 1;
   protected idLivro: string | number;
@@ -6,7 +9,25 @@ export class Locacao {
   protected dataDevolucao: Date;
   protected dataDevolvida: Date | null;
   protected devolvido: boolean = false;
+
   static listaLocacao: Locacao[] = [];
+
+  /**
+   * Representa uma locação de livro.
+   *
+   * **Exemplo de uso:**
+   *
+   * ```js
+   * const locacao = new Locacao(1, 101, '2024-12-01', '2024-12-15', '2024-12-10');
+   * ```
+   *
+   * @param {number|string} idLivro - O ID do livro que está sendo locado.
+   * @param {number|string} idUsuario - O ID do usuário que está fazendo a locação.
+   * @param {string} dataLocacao - A data em que o livro foi locado.
+   * @param {string} dataDevolucao - A data em que o livro deve ser devolvido.
+   * @param {string} dataDevolvida - A data em que o livro foi realmente devolvido.
+   *
+   */
 
   constructor(
     idLivro: string | number,
@@ -24,23 +45,33 @@ export class Locacao {
     Locacao.listaLocacao.push(this);
   }
   /**
-   * Exibe informações sobre a locação
+   * O método exibir nos retorna uma string com as informações da locação.
+   *
+   *  **Exemplo de retorno**
+   * ```txt
+   *‎ ‎
+   * "ID livro: 1 \n ID Usuario: 2 \n Locado em: 12/02/2024 \n Entrega Devolução: 16/02/2024 \n Status: No prazo \n Devolvido: Sim";
+   *‎ ‎
+   * ```
+   * @returns string
    */
   exibir() {
-    return(
-      ` ID livro: ${this.idLivro} \n ID Usuario: ${
-        this.idUsuario
-      } \n Locado em: ${this.dataLocacao.toLocaleDateString()} \n Entrega Devolução: ${this.dataDevolucao.toLocaleDateString()} \n Status: ${
-        this.isLate() ? "Atrasado" : "No Prazo"
-      } \n Devolvido: ${this.devolvido ? "Sim" : "Não"}`
-    );
+    return ` ID livro: ${this.idLivro} \n ID Usuario: ${
+      this.idUsuario
+    } \n Locado em: ${this.dataLocacao.toLocaleDateString()} \n Entrega Devolução: ${this.dataDevolucao.toLocaleDateString()} \n Status: ${
+      this.isLate() ? "Atrasado" : "No Prazo"
+    } \n Devolvido: ${this.devolvido ? "Sim" : "Não"}`;
   }
 
+  /**
+   * Atualiza o status da locação para verdadeiro
+   * @returns boolean
+   */
   devolver() {
     this.devolvido = true;
     if (this.devolvido) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
