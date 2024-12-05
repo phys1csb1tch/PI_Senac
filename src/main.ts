@@ -3,6 +3,7 @@ import { Usuario } from "./Classes/Usuario";
 import { Genero } from "./Classes/Genero";
 import { Livros } from "./Classes/Livros";
 import promptSync from 'prompt-sync';
+import { UserScreen } from "./Screens/UserScreen";
 // import { UserScreen } from "./screens/UserScreen";
 const prompt = promptSync();
 // let login: boolean = false;
@@ -90,6 +91,8 @@ IDEIA: SEPARAR OS MENUS VISITANTE, USUARIO E ADMIN EM ARQUIVOS DIFERENTES
 let controle = true;
 let logado = false;
 
+var userAuth : Usuario | null = null;
+
 while (controle) {
     console.clear()
 
@@ -119,14 +122,20 @@ while (controle) {
                     const password = prompt(`Entre com a senha para o Usuário '${usuarioEncontrado.nome}': `)
                     if (password === usuarioEncontrado.senha) {
                         console.log(`Bem vinde, ${usuarioEncontrado.nome}`)
-                        // login = true;
-                        // UserScreen();
+
+                        userAuth = usuarioEncontrado;
+
+                        UserScreen(userAuth);
+
                         prompt("Aperte qualquer tecla para continuar...")
+
                         logado = true;
                         break;
                     } else {
                         console.error("Senha incorreta.")
+
                         again = prompt(`Deseja tentar novamente? 1: Sim | 2: Não`)
+                        
                         if (again === "2") { break; }
                     }
 
