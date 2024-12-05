@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Usuario.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Usuario.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+var __importDefault = (this &amp;&amp; this.__importDefault) || function (mod) {
+    return (mod &amp;&amp; mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Usuario = void 0;
+const prompt_sync_1 = __importDefault(require("prompt-sync"));
+const UserMessages_1 = require("../Messages/UserMessages");
+const prompt = (0, prompt_sync_1.default)();
+class Usuario {
+    static listaUsuarios = [];
+    _cpf;
+    _endereco;
+    static contadorID = 1;
+    id;
+    _nome;
+    _senha;
+    verificaAdmin;
+    constructor(nome, cpf, endereco, senha) {
+        this.id = Usuario.contadorID++;
+        this._nome = nome;
+        this._senha = senha;
+        this.verificaAdmin = false;
+        this._cpf = cpf;
+        this._endereco = endereco;
+        const usuarioExistente = Usuario.listaUsuarios.find((usuario) => usuario._nome === nome || usuario._cpf === cpf);
+        if (usuarioExistente) {
+            console.error("Nome de usuário ou CPF já cadastrado.");
+        }
+        else {
+            Usuario.listaUsuarios.push(this);
+            console.log("Usuário cadastrado com sucesso!");
+        }
+    }
+    exibir() {
+        return `Id: ${this.id}| Nome: ${this._nome} | CPF: ${this._cpf} | Endereço: ${this._endereco}`;
+    }
+    get cpf() {
+        return this._cpf;
+    }
+    get senha() {
+        return this._senha;
+    }
+    set senha(novasenha) {
+        this._senha = novasenha;
+    }
+    get nome() {
+        return this._nome;
+    }
+    set nome(novoNome) {
+        this._nome = novoNome;
+    }
+    //   set endereco(novoEndereco: string) {
+    //     this._endereco = novoEndereco;
+    //   }
+    trocarEndereco(novoEndereco) {
+        this._endereco = novoEndereco;
+        const usuario = prompt(`Entre com o nome de usuário: `);
+        const senha = prompt(`Senha: `);
+        if (usuario == this._nome &amp;&amp; senha == this._senha) {
+            this._senha = prompt("Nova senha: ");
+            console.log("Senha atualizada!");
+        }
+        else {
+            console.log("Usuário não encontrado ou senha incorreta.");
+        }
+    }
+    trocaSenha(novaSenha) {
+        //aqui posso expandir colocando uma verificação pra indicar erro no usuario ou na senha
+        const usuario = prompt(UserMessages_1.PROMPT_ENTER_THE_USERNAME);
+        const senha = prompt(UserMessages_1.PROMPT_ENTER_THE_PASSWORD);
+        let isValid = this.validUserInternal(usuario, senha);
+        if (isValid) {
+            this._senha = novaSenha;
+        }
+        else {
+            console.log(UserMessages_1.INVALID_CREDENTIALS);
+        }
+    }
+    validUserInternal(inptUsuario, inptPassword) {
+        const usuario = inptUsuario;
+        const senha = inptPassword;
+        let user = this.consultarUsuario(usuario);
+        if (usuario == this._nome &amp;&amp; senha == this._senha) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    /**
+     * Exibe usuarios do sistema com um console.log()
+     * @param teste
+     */
+    static listarUsuarios() {
+        // Ideia futura, definir tipo de retorno que deseja passando um parametro na função
+        Usuario.listaUsuarios.forEach((usuario) => console.log(usuario.exibir()));
+    }
+    /**
+     * Verifica se o usuario é valido
+     * @param criterio ```nome``` ou ```id```
+     * @returns ```Usuario``` | ```null```
+     */
+    static consultarUsuario(criterio) {
+        return (Usuario.listaUsuarios.find((usuario) => usuario._nome === criterio || usuario.id.toString() === criterio) || null);
+    }
+    /**
+     * ## Get User Or Null Internal
+     * ### Verifica se o usuario é valido, sendo, ele retorna o usuario, senão retorna nulo.
+     * utilizar esse método para validações internas da classe Usuario
+     * @param {string} criterio ```nome``` ou ```id```
+     * @returns ```Usuario``` | ```null```
+     */
+    getUserOrNullInternal(criterio) {
+        return (Usuario.listaUsuarios.find((usuario) => usuario._nome === criterio || usuario.id.toString() === criterio) || null);
+    }
+}
+exports.Usuario = Usuario;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Thu Dec 05 2024 11:14:52 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

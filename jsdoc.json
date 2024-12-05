@@ -1,0 +1,12 @@
+{
+  "source": {
+    "include": ["dist"], // Diretório onde estão os arquivos .js
+    "includePattern": ".+\\.js$", // Apenas arquivos .js serão incluídos
+    "excludePattern": ""
+  },
+  "plugins": ["plugins/markdown"],
+  "opts": {
+    "destination": "./docs",
+    "recurse": true
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "testeeusozinha",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "make-doc": "npx jsdoc -c jsdoc.json",
+    "watch": "npx tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "prompt-sync": "^4.2.0",
+    "typescript": "^5.7.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/prompt-sync": "^4.2.3",
+    "jest": "^29.7.0",
+    "minami": "^1.2.3",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2"
+  }
+}
