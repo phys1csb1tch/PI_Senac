@@ -3,7 +3,7 @@ import { Usuario } from "./Classes/Usuario";
 import { Genero } from "./Classes/Genero";
 import { Livros } from "./Classes/Livros";
 import promptSync from 'prompt-sync';
-import { UserScreen } from "./screens/UserScreen";
+// import { UserScreen } from "./screens/UserScreen";
 const prompt = promptSync();
 // let login: boolean = false;
 
@@ -120,7 +120,7 @@ while (controle) {
                     if (password === usuarioEncontrado.senha) {
                         console.log(`Bem vinde, ${usuarioEncontrado.nome}`)
                         // login = true;
-                        UserScreen();
+                        // UserScreen();
                         prompt("Aperte qualquer tecla para continuar...")
                         logado = true;
                         break;
